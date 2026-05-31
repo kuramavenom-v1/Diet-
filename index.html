@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام غذائي - الواجهة الرئيسية</title>
+    <title>H SYSTEM - نظام غذائي</title>
     <style>
         /* إعدادات الخلفية العامة للموقع باللون الأسود العميق */
         body {
@@ -16,7 +16,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -47,6 +47,7 @@
             width: 90%;
             max-width: 650px;
             text-align: center;
+            padding: 20px 0;
         }
 
         /* شعار اللوجو العلوي المتوهج */
@@ -70,7 +71,7 @@
         }
 
         h1.title {
-            font-size: 28px;
+            font-size: 26px;
             color: #ffffff;
             margin: 0 0 15px 0;
             font-weight: 800;
@@ -78,33 +79,71 @@
         }
 
         .subtitle {
-            font-size: 16px;
+            font-size: 15px;
             color: #00f2fe;
-            margin: 0 0 40px 0;
+            margin: 0 0 30px 0;
             font-weight: 500;
             text-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
+            line-height: 1.6;
         }
 
-        /* خط التقسيم المتوهج */
+        /* خط التقسيم المتوهج بتأثير الأمواج المتحركة */
         .matrix-line {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00f2fe, #0066ff, transparent);
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00f2fe, #ff0055, #00f2fe, transparent);
+            background-size: 200% 100%;
             width: 90%;
-            margin: 0 auto 40px auto;
+            margin: 0 auto 35px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+            animation: waveGlow 3s infinite linear;
         }
 
-        /* حاوية الأزرار */
-        .button-group {
+        @keyframes waveGlow {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* بوابة كلمة المرور */
+        .password-section {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cyber-input {
+            width: 80%;
+            max-width: 300px;
+            padding: 12px 20px;
+            background: rgba(5, 7, 15, 0.8);
+            border: 2px solid #00f2fe;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .cyber-input:focus {
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            border-color: #ff0055;
+        }
+
+        /* حاوية الأزرار (مخفية في البداية) */
+        .button-group {
+            display: none;
             gap: 20px;
             justify-content: center;
             align-items: center;
         }
 
-        /* التصميم الأساسي للأزرار السيبرانية مع تأثير الانتفاضة المستمرة */
+        /* التصميم الأساسي للأزرار السيبرانية بدون ارتعاش */
         .cyber-btn {
             flex: 1;
-            padding: 20px 10px;
+            padding: 18px 10px;
             background: linear-gradient(135deg, #020813 0%, #0a1931 100%);
             color: #ffffff;
             font-size: 18px;
@@ -113,37 +152,35 @@
             text-align: center;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            
-            /* هنا السحر: استدعاء أنيميشن الانتفاضة والاهتزاز بشكل مستمر */
-            animation: cyberJitter 0.3s infinite linear;
         }
 
-        /* زر النظام الأول - O وتوهجه الخاص */
+        /* زر النظام الأول - O */
         .btn-o {
             border: 2px solid #00f2fe;
             text-shadow: 0 0 10px #00f2fe;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2), inset 0 0 10px rgba(0, 242, 254, 0.1);
-            animation-duration: 0.25s; /* سرعة انتفاضة مختلفة لتعطي عشوائية */
         }
         
-        /* زر النظام الثاني - H وتوهجه الخاص */
+        /* زر النظام الثاني - H */
         .btn-h {
-            border: 2px solid #ff0055; /* تدرج لوني مميز للزر الثاني */
+            border: 2px solid #ff0055;
             text-shadow: 0 0 10px #ff0055;
-            box-shadow: 0 0 15px rgba(ff, 0, 55, 0.2), inset 0 0 10px rgba(ff, 0, 55, 0.1);
-            animation-duration: 0.28s;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.2), inset 0 0 10px rgba(255, 0, 85, 0.1);
         }
 
-        /* تأثيرات إضافية عند تمرير الماوس (Hover) لتزيد من الحماس */
+        /* تأثير التمرير (Hover) الاحترافي */
         .cyber-btn:hover {
-            scale: 1.05;
-            background: #0066ff;
+            transform: translateY(-4px);
             color: #fff;
             text-shadow: 0 0 15px #fff;
-            box-shadow: 0 0 30px #0066ff;
-            animation: none; /* يثبت الزر عند التأشير عليه ويركز التوهج */
+        }
+
+        .btn-o:hover {
+            background: #00f2fe;
+            color: #05070f;
+            box-shadow: 0 0 30px #00f2fe;
         }
 
         .btn-h:hover {
@@ -151,30 +188,18 @@
             box-shadow: 0 0 30px #ff0055;
         }
 
-        /* الأقواس الديكورية داخل الأزرار */
-        .cyber-btn::before { content: "[ "; color: #00f2fe; }
-        .cyber-btn::after { content: " ]"; color: #00f2fe; }
-        .btn-h::before, .btn-h::after { color: #ffffff; }
-
-        /* كود أنيميشن "الانتفاضة والاهتزاز العشوائي السريع" المدمر */
-        @keyframes cyberJitter {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            10% { transform: translate(-1px, -1px) rotate(-0.5deg); }
-            20% { transform: translate(1px, 1px) rotate(0.5deg); }
-            30% { transform: translate(-2px, 1px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(0.5deg); }
-            50% { transform: translate(-1px, 2px) rotate(-0.5deg); }
-            60% { transform: translate(2px, -1px) rotate(0deg); }
-            70% { transform: translate(-1px, -1px) rotate(0.5deg); }
-            80% { transform: translate(1px, 1px) rotate(-0.5deg); }
-            90% { transform: translate(-2px, -1px) rotate(0deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
+        .cyber-btn::before { content: "[ "; color: #00f2fe; transition: color 0.3s; }
+        .cyber-btn::after { content: " ]"; color: #00f2fe; transition: color 0.3s; }
+        .btn-h::before, .btn-h::after { color: #ff0055; }
+        
+        .cyber-btn:hover::before, .cyber-btn:hover::after {
+            color: #ffffff;
         }
 
         /* فوتر النظام السفلي */
         .system-status {
             margin-top: 40px;
-            font-size: 12px;
+            font-size: 11px;
             color: #4b5563;
             font-family: monospace;
             letter-spacing: 1px;
@@ -189,38 +214,96 @@
             margin-left: 6px;
             box-shadow: 0 0 8px #00f2fe;
         }
+
+        /* إعدادات التوافق الكامل مع الجوال المتجاوب */
+        @media (max-width: 600px) {
+            .main-card {
+                padding: 30px 20px;
+            }
+            h1.title {
+                font-size: 22px;
+            }
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .cyber-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .cyber-input {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- هالات التوهج الخلفية -->
     <div class="bg-glow-1"></div>
     <div class="bg-glow-2"></div>
 
     <div class="container">
-        <!-- اسم اللوجو الخاص بك -->
-        <div class="cyber-logo">VENOM SYSTEM</div>
+        <div class="cyber-logo">H SYSTEM</div>
 
-        <!-- الكرت الرئيسي والخيارات -->
         <div class="main-card">
-            <h1 class="title">الدخول إلى النظام الغذائي المخصص</h1>
-            <p class="subtitle">اختر بوابة النظام الصحي المشفر للبدء في تدمير الدهون واكتساب اللياقة</p>
+            <h1 class="title" id="card-title">بوابة التحقق الأمنية</h1>
+            <p class="subtitle" id="card-subtitle">أدخل مفتاح التشفير الخاص بك للوصول إلى الأنظمة الغذائية المخصصة</p>
             
             <div class="matrix-line"></div>
 
-            <!-- أزرار الأنظمة المنتفضة والمتوهجة -->
-            <div class="button-group">
-                <a class="cyber-btn btn-o">النظام الأول - O</a>
-                <a class="cyber-btn btn-h">النظام الثاني - H</a>
+            <div class="password-section" id="auth-gate">
+                <input type="password" id="sys-pass" class="cyber-input" placeholder="••••••••" autocomplete="off">
+                <a class="cyber-btn btn-o" onclick="checkAccess()" style="flex: none; width: 150px; padding: 12px 0; font-size: 16px;">تأكيد الدخول</a>
+            </div>
+
+            <div class="button-group" id="systems-gate">
+                <a href="system-o.html" class="cyber-btn btn-o">النظام الأول - O</a>
+                <a href="system-h.html" class="cyber-btn btn-h">النظام الثاني - H</a>
             </div>
         </div>
 
-        <!-- حقوق النظام الخاص بك -->
         <div class="system-status">
-            <span class="status-dot"></span> SECURE ACCESS SYSTEM CORE v3.0 // EXCLUSIVE TO VENOM
+            <span class="status-dot"></span> SECURE ACCESS SYSTEM CORE v3.0 // EXCLUSIVE TO H SYSTEM
         </div>
     </div>
 
+    <script>
+        // كلمة المرور مشفرة بـ Base64 لضمان عدم قراءتها مباشرة من الـ Source Code كـ نص صريح
+        // النص المشفر يعبر عن القيمة "oohh"
+        const _vKey = "b29oaA==";
+
+        function checkAccess() {
+            const inputField = document.getElementById('sys-pass');
+            const userPass = inputField.value;
+            
+            // فك التشفير ومقارنته بمدخلات المستخدم
+            if (userPass === atob(_vKey)) {
+                // تغيير العناوين والواجهة بسلاسة لفتح الأنظمة
+                document.getElementById('card-title').innerText = "الدخول إلى النظام الغذائي المخصص";
+                document.getElementById('card-subtitle').innerText = "اختر بوابة النظام الصحي للبدء في تدمير الدهون واكتساب اللياقة";
+                document.getElementById('auth-gate').style.display = 'none';
+                
+                // إظهار الأزرار المخصصة للأنظمة الغذائية
+                const sysGate = document.getElementById('systems-gate');
+                sysGate.style.display = 'flex';
+                
+                // تعديل مظهر حاوية الأزرار على الجوال عند الفتح
+                if(window.innerWidth <= 600) {
+                    sysGate.style.flexDirection = 'column';
+                }
+            } else {
+                alert('عذرًا.. مفتاح التشفير غير صحيح! حاول مجددًا.');
+                inputField.value = '';
+                inputField.focus();
+            }
+        }
+
+        // تفعيل زر الإنتر للكيبورد لتسهيل الدخول
+        document.getElementById('sys-pass').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkAccess();
+            }
+        });
+    </script>
 </body>
 </html>
-
