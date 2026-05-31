@@ -12,7 +12,7 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #05070f;
+            background-color: #030408;
             color: #ffffff;
             margin: 0;
             padding: 0;
@@ -25,14 +25,14 @@
             position: relative;
         }
 
-        /* هالات التوهج الخلفية النيون */
+        /* هالات التوهج الخلفية النيون بالطابع الذهبي */
         .bg-glow-1 {
             position: absolute;
             top: -10%;
             left: -10%;
             width: 50%;
             height: 50%;
-            background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(0,0,0,0) 70%);
             z-index: 1;
         }
 
@@ -42,7 +42,7 @@
             right: -10%;
             width: 50%;
             height: 50%;
-            background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, rgba(0,0,0,0) 70%);
             z-index: 1;
         }
 
@@ -60,24 +60,24 @@
             align-items: center;
         }
 
-        /* شعار اللوجو العلوي المتوهج */
+        /* شعار اللوجو العلوي المتوهج بالذهبي */
         .cyber-logo {
             font-size: 28px;
             font-weight: 900;
-            color: #00f2fe;
-            text-shadow: 0 0 15px #00f2fe, 0 0 30px #0066ff;
+            color: #ffd700;
+            text-shadow: 0 0 15px #ffd700, 0 0 30px #b8860b;
             margin-bottom: 20px;
             letter-spacing: 2px;
             text-align: center;
         }
 
-        /* كرت الجوال الرئيسي المتزن */
+        /* كرت الجوال الرئيسي المتزن باللون الأسود والحدود الذهبية */
         .main-card {
-            background: rgba(10, 15, 30, 0.9);
-            border: 2px solid #0066ff;
+            background: rgba(10, 11, 15, 0.95);
+            border: 2px solid #d4af37;
             border-radius: 16px;
             padding: 25px 20px;
-            box-shadow: 0 0 25px rgba(0, 102, 255, 0.25), inset 0 0 15px rgba(0, 242, 254, 0.08);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.05);
             backdrop-filter: blur(8px);
             width: 100%;
         }
@@ -94,23 +94,23 @@
 
         .subtitle {
             font-size: 13px;
-            color: #00f2fe;
+            color: #ffd700;
             margin: 0 0 20px 0;
             font-weight: 500;
-            text-shadow: 0 0 6px rgba(0, 242, 254, 0.2);
+            text-shadow: 0 0 6px rgba(255, 215, 0, 0.2);
             line-height: 1.5;
             text-align: center;
         }
 
-        /* خط التقسيم بتأثير أمواج النور */
+        /* خط التقسيم بتأثير أمواج النور الذهبية */
         .matrix-line {
             height: 3px;
-            background: linear-gradient(90deg, transparent, #00f2fe, #ff0055, #00f2fe, transparent);
+            background: linear-gradient(90deg, transparent, #ffd700, #aa7c11, #ffd700, transparent);
             background-size: 200% 100%;
             width: 100%;
             margin: 0 auto 20px auto;
             border-radius: 10px;
-            box-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
             animation: waveGlow 3s infinite linear;
         }
 
@@ -132,20 +132,20 @@
             width: 100%;
             max-width: 260px;
             padding: 12px;
-            background: rgba(5, 7, 15, 0.95);
-            border: 2px solid #00f2fe;
+            background: rgba(5, 5, 8, 0.95);
+            border: 2px solid #d4af37;
             border-radius: 10px;
             color: #fff;
             font-size: 18px;
             text-align: center;
             outline: none;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
             transition: all 0.3s ease;
         }
 
         .cyber-input:focus {
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.35);
-            border-color: #ff0055;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            border-color: #ffffff;
         }
 
         /* أزرار اختيار الأنظمة المتوافقة مع الجوال */
@@ -159,7 +159,7 @@
         .cyber-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #020813 0%, #0a1931 100%);
+            background: linear-gradient(135deg, #050608 0%, #15181f 100%);
             color: #ffffff;
             font-size: 16px;
             font-weight: 700;
@@ -174,51 +174,51 @@
         }
 
         .btn-o {
-            border: 2px solid #00f2fe;
-            text-shadow: 0 0 8px #00f2fe;
-            box-shadow: 0 0 12px rgba(0, 242, 254, 0.15);
+            border: 2px solid #ffd700;
+            text-shadow: 0 0 8px #ffd700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
         }
         
         .btn-h {
-            border: 2px solid #ff0055;
-            text-shadow: 0 0 8px #ff0055;
-            box-shadow: 0 0 12px rgba(255, 0, 85, 0.15);
+            border: 2px solid #b8860b;
+            text-shadow: 0 0 8px #b8860b;
+            box-shadow: 0 0 12px rgba(184, 134, 11, 0.15);
         }
 
         .cyber-btn:active {
             transform: scale(0.97);
         }
 
-        .cyber-btn::before { content: "[ "; color: #00f2fe; }
-        .cyber-btn::after { content: " ]"; color: #00f2fe; }
-        .btn-h::before, .btn-h::after { color: #ff0055; }
+        .cyber-btn::before { content: "[ "; color: #ffd700; }
+        .cyber-btn::after { content: " ]"; color: #ffd700; }
+        .btn-h::before, .btn-h::after { color: #b8860b; }
 
         /* حاوية عرض الأنظمة الغذائية */
         .diet-content {
             display: none;
             text-align: right;
-            background: rgba(5, 7, 15, 0.95);
-            border: 1px solid #00f2fe;
+            background: rgba(5, 5, 8, 0.95);
+            border: 1px solid #d4af37;
             border-radius: 10px;
             padding: 15px;
             margin-top: 5px;
-            box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.1);
+            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.1);
             max-height: 65vh;
             overflow-y: auto; /* تمرير سلس للمحتوى الطويل على الجوال */
         }
 
         .diet-content h2 {
             font-size: 16px;
-            color: #00f2fe;
+            color: #ffd700;
             margin: 0 0 12px 0;
-            border-bottom: 1px solid rgba(0, 242, 254, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
             padding-bottom: 8px;
             text-align: center;
         }
 
         .section-title {
             font-size: 14px;
-            color: #00f2fe;
+            color: #ffd700;
             font-weight: bold;
             margin: 15px 0 8px 0;
             display: flex;
@@ -227,23 +227,23 @@
         }
 
         .btn-h-title {
-            color: #ff0055;
+            color: #ffd700;
         }
 
         .meal-box {
-            background: rgba(255, 255, 255, 0.03);
-            border-right: 3px solid #00f2fe;
+            background: rgba(255, 255, 255, 0.02);
+            border-right: 3px solid #ffd700;
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 4px;
         }
 
         .meal-box.h-style {
-            border-right-color: #ff0055;
+            border-right-color: #b8860b;
         }
 
         .meal-box.gold-style {
-            border-right-color: #ffaa00;
+            border-right-color: #ffd700;
         }
 
         .meal-title {
@@ -260,12 +260,12 @@
             margin: 0;
         }
 
-        /* زر العودة */
+        /* زر العودة للأنظمة باللون الذهبي */
         .back-btn {
             margin-top: 15px;
             background: transparent;
-            border: 1px solid #ff0055;
-            color: #ff0055;
+            border: 1px solid #ffd700;
+            color: #ffd700;
             padding: 12px;
             border-radius: 8px;
             cursor: pointer;
@@ -276,15 +276,15 @@
         }
 
         .back-btn:active {
-            background: #ff0055;
-            color: #fff;
+            background: #ffd700;
+            color: #030408;
         }
 
-        /* فوتر النظام */
+        /* فوتر النظام المحدث */
         .system-status {
             margin-top: 25px;
-            font-size: 9px;
-            color: #4b5563;
+            font-size: 10px;
+            color: #71717a;
             font-family: monospace;
             letter-spacing: 0.5px;
             text-align: center;
@@ -294,10 +294,10 @@
             display: inline-block;
             width: 6px;
             height: 6px;
-            background-color: #00f2fe;
+            background-color: #ffd700;
             border-radius: 50%;
             margin-left: 4px;
-            box-shadow: 0 0 6px #00f2fe;
+            box-shadow: 0 0 6px #ffd700;
         }
     </style>
 </head>
@@ -418,17 +418,17 @@
             </div>
 
             <div id="gold-instructions-template" style="display:none;">
-                <div class="section-title" style="color: #ffaa00;">💡 تعليمات ذهبية للاثنين (لضمان النتيجة):</div>
+                <div class="section-title" style="color: #ffd700;">💡 تعليمات ذهبية للاثنين (لضمان النتيجة):</div>
                 <div class="meal-box gold-style">
                     <div class="meal-title">الماء:</div>
                     <p class="meal-details">شرب لا يقل عن 3 لتر ماء يومياً. الماء هو أساس عمليات الحرق بالجسم.</p>
                 </div>
                 <div class="meal-box gold-style">
                     <div class="meal-title">قطع السكريات:</div>
-                    <p class="meal-details">منع الحلويات، الغازيات، والعصائر الجاهزة تماماً. واستبدال سكر الطعام بسكر دايت (مثل ستيفيا) باعتدال.</p>
+                    <p class="meal-details">منع الحلويات, الغازيات، والعصائر الجاهزة تماماً. واستبدال سكر الطعام بسكر دايت (مثل ستيفيا) باعتدال.</p>
                 </div>
                 <div class="meal-box gold-style">
-                    <div class="meal-title">النومة المنظم:</div>
+                    <div class="meal-title">النوم المنظم:</div>
                     <p class="meal-details">النوم من 7 لـ 8 ساعات بالليل يساعد على تنظيم الهرمونات المسؤولة عن الجوع والحرق.</p>
                 </div>
                 <div class="meal-box gold-style">
@@ -444,14 +444,13 @@
         </div>
 
         <div class="system-status">
-            <span class="status-dot"></span> SECURE ACCESS SYSTEM CORE v3.0 // EXCLUSIVE TO H SYSTEM
+            <span class="status-dot"></span> The website is open 24H
         </div>
     </div>
 
     <script>
         const _vKey = "b29oaA==";
 
-        // تجهيز وحقن التعليمات الذهبية في كلا النظامين تلقائياً لمنع التكرار
         window.onload = function() {
             const template = document.getElementById('gold-instructions-template').innerHTML;
             document.getElementById('gold-rules-o').innerHTML = template;
@@ -481,7 +480,7 @@
             if (type === 'O') {
                 document.getElementById('card-title').innerText = "بوابة النظام [ O ]";
                 document.getElementById('diet-o-panel').style.display = 'block';
-                document.getElementById('diet-o-panel').scrollTop = 0; // إرجاع السكرول لأعلى الصفحة
+                document.getElementById('diet-o-panel').scrollTop = 0;
             } else if (type === 'H') {
                 document.getElementById('card-title').innerText = "بوابة النظام [ H ]";
                 document.getElementById('diet-h-panel').style.display = 'block';
