@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>H SYSTEM - نظام غذائي</title>
     <style>
-        /* إعدادات الخلفية العامة المتوافقة مع أبعاد شاشات الجوال */
+        /* إعدادات الخلفية وتثبيت السنتر تماماً لمنع الانحراف */
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #05070f;
@@ -16,10 +20,9 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            width: 100%;
+            width: 100vw;
             overflow-x: hidden;
             position: relative;
-            box-sizing: border-box;
         }
 
         /* هالات التوهج الخلفية */
@@ -43,15 +46,18 @@
             z-index: 1;
         }
 
-        /* حاوية مرنة مخصصة لأبعاد شاشة الهاتف */
+        /* حاوية ثابتة وممركزة بالملي للجوال */
         .container {
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 480px;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
+            max-width: 420px; /* الحجم المثالي لأقوى استقرار على الجوال */
+            padding: 16px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         /* شعار اللوجو العلوي المتوهج */
@@ -60,39 +66,41 @@
             font-weight: 900;
             color: #00f2fe;
             text-shadow: 0 0 15px #00f2fe, 0 0 30px #0066ff;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             letter-spacing: 2px;
+            text-align: center;
         }
 
-        /* كرت الجوال الرئيسي */
+        /* كرت الجوال الرئيسي الثابت */
         .main-card {
-            background: rgba(10, 15, 30, 0.85);
+            background: rgba(10, 15, 30, 0.9);
             border: 2px solid #0066ff;
             border-radius: 16px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             box-shadow: 0 0 25px rgba(0, 102, 255, 0.25), inset 0 0 15px rgba(0, 242, 254, 0.08);
             backdrop-filter: blur(8px);
             width: 100%;
-            box-sizing: border-box;
             transition: all 0.3s ease;
         }
 
         h1.title {
-            font-size: 20px;
+            font-size: 19px;
             color: #ffffff;
             margin: 0 0 12px 0;
             font-weight: 800;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             line-height: 1.4;
+            text-align: center;
         }
 
         .subtitle {
-            font-size: 14px;
+            font-size: 13px;
             color: #00f2fe;
-            margin: 0 0 25px 0;
+            margin: 0 0 20px 0;
             font-weight: 500;
             text-shadow: 0 0 6px rgba(0, 242, 254, 0.2);
             line-height: 1.5;
+            text-align: center;
         }
 
         /* خط التقسيم بتأثير الأمواج الضوئية */
@@ -101,7 +109,7 @@
             background: linear-gradient(90deg, transparent, #00f2fe, #ff0055, #00f2fe, transparent);
             background-size: 200% 100%;
             width: 100%;
-            margin: 0 auto 25px auto;
+            margin: 0 auto 20px auto;
             border-radius: 10px;
             box-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
             animation: waveGlow 3s infinite linear;
@@ -112,7 +120,7 @@
             100% { background-position: -200% 0; }
         }
 
-        /* بوابة التحقق المخصصة للجوال */
+        /* بوابة التحقق */
         .password-section {
             display: flex;
             flex-direction: column;
@@ -123,16 +131,15 @@
 
         .cyber-input {
             width: 100%;
-            max-width: 280px;
-            padding: 14px;
-            background: rgba(5, 7, 15, 0.9);
+            max-width: 260px;
+            padding: 12px;
+            background: rgba(5, 7, 15, 0.95);
             border: 2px solid #00f2fe;
             border-radius: 10px;
             color: #fff;
             font-size: 18px;
             text-align: center;
             outline: none;
-            box-sizing: border-box;
             box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
             transition: all 0.3s ease;
         }
@@ -152,8 +159,7 @@
 
         .cyber-btn {
             width: 100%;
-            box-sizing: border-box;
-            padding: 16px 15px;
+            padding: 15px;
             background: linear-gradient(135deg, #020813 0%, #0a1931 100%);
             color: #ffffff;
             font-size: 16px;
@@ -165,6 +171,7 @@
             transition: all 0.25s ease;
             position: relative;
             display: block;
+            border: none;
         }
 
         .btn-o {
@@ -179,86 +186,97 @@
             box-shadow: 0 0 12px rgba(255, 0, 85, 0.15);
         }
 
-        .cyber-btn:active, .cyber-btn:hover {
-            transform: scale(0.98);
-            color: #fff;
-        }
-
-        .btn-o:active, .btn-o:hover {
-            background: #00f2fe;
-            color: #05070f;
-            box-shadow: 0 0 20px #00f2fe;
-        }
-
-        .btn-h:active, .btn-h:hover {
-            background: #ff0055;
-            box-shadow: 0 0 20px #ff0055;
+        .cyber-btn:active {
+            transform: scale(0.97);
         }
 
         .cyber-btn::before { content: "[ "; color: #00f2fe; }
         .cyber-btn::after { content: " ]"; color: #00f2fe; }
         .btn-h::before, .btn-h::after { color: #ff0055; }
 
-        /* حاوية عرض بيانات الأنظمة الغذائية */
+        /* حاوية عرض الجداول الغذائية الكبيرة والمتكاملة */
         .diet-content {
             display: none;
             text-align: right;
-            background: rgba(5, 7, 15, 0.9);
+            background: rgba(5, 7, 15, 0.95);
             border: 1px solid #00f2fe;
             border-radius: 10px;
-            padding: 20px;
-            margin-top: 10px;
+            padding: 15px;
+            margin-top: 5px;
             box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.1);
+            max-height: 60vh;
+            overflow-y: auto; /* يسمح بالتمرير الداخلي السلس إذا كانت الوجبات طويلة */
         }
 
         .diet-content h2 {
-            font-size: 18px;
+            font-size: 17px;
             color: #00f2fe;
             margin-top: 0;
             border-bottom: 1px solid rgba(0, 242, 254, 0.3);
             padding-bottom: 8px;
+            text-align: center;
         }
 
-        .diet-content p {
+        .meal-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-right: 3px solid #ff0055;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        .meal-box.o-style {
+            border-right-color: #00f2fe;
+        }
+
+        .meal-title {
+            font-weight: 800;
+            color: #ffffff;
             font-size: 14px;
-            line-height: 1.6;
-            color: #e2e8f0;
-            margin: 10px 0;
+            margin-bottom: 4px;
+        }
+
+        .meal-details {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.5;
+            margin: 0;
         }
 
         /* زر العودة للأنظمة */
         .back-btn {
-            margin-top: 20px;
+            margin-top: 15px;
             background: transparent;
             border: 1px solid #ff0055;
             color: #ff0055;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
             font-weight: bold;
+            font-size: 14px;
             transition: 0.3s;
         }
 
-        .back-btn:hover {
+        .back-btn:active {
             background: #ff0055;
             color: #fff;
         }
 
-        /* فوتر النظام السفلي للجوال */
+        /* فوتر النظام */
         .system-status {
-            margin-top: 30px;
-            font-size: 10px;
+            margin-top: 25px;
+            font-size: 9px;
             color: #4b5563;
             font-family: monospace;
             letter-spacing: 0.5px;
-            line-height: 1.4;
+            text-align: center;
         }
 
         .status-dot {
             display: inline-block;
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             background-color: #00f2fe;
             border-radius: 50%;
             margin-left: 4px;
@@ -280,33 +298,75 @@
             
             <div class="matrix-line"></div>
 
-            <!-- بوابة الباسوورد -->
             <div class="password-section" id="auth-gate">
                 <input type="password" id="sys-pass" class="cyber-input" placeholder="••••••••" autocomplete="off">
-                <button class="cyber-btn btn-o" onclick="checkAccess()" style="max-width: 160px; padding: 12px 0;">تأكيد الدخول</button>
+                <button class="cyber-btn btn-o" onclick="checkAccess()" style="max-width: 150px; padding: 10px 0; font-size: 15px;">تأكيد الدخول</button>
             </div>
 
-            <!-- أزرار اختيار الأنظمة -->
             <div class="button-group" id="systems-gate">
                 <button class="cyber-btn btn-o" onclick="showDiet('O')">النظام الأول - O</button>
                 <button class="cyber-btn btn-h" onclick="showDiet('H')">النظام الثاني - H</button>
             </div>
 
-            <!-- مكان استعراض بيانات نظام O -->
             <div class="diet-content" id="diet-o-panel">
-                <h2>📋 تفاصيل النظام الأول - O</h2>
-                <p><strong>• الوجبة الأولى:</strong> 3 بيضات مسلوقة + نصف خبز بر + خيار.</p>
-                <p><strong>• الوجبة الثانية:</strong> 200 جرام صدر دجاج مشوي + 150 جرام أرز مسلوق + سلطة خضراء.</p>
-                <p><strong>• الوجبة الثالثة:</strong> علبة تونة مصفاة من الزيت + سلطة أو قطعة توست أسمر.</p>
+                <h2>📋 الجدول الغذائي المتكامل [ O ]</h2>
+                
+                <div class="meal-box o-style">
+                    <div class="meal-title">🍳 الوجبة الأولى (الفطور)</div>
+                    <p class="meal-details">4 بياض بيض + بيضة كاملة (مسلوق أو أومليت بنقطة زيت زيتون) + 50 غرام خبز بر كامل + خيار وخس غير محدود.</p>
+                </div>
+
+                <div class="meal-box o-style">
+                    <div class="meal-title">🍏 سناك (1)</div>
+                    <p class="meal-details">حبة تفاحة خضراء أو برتقالة متوسطة + 10 حبات لوز نيون طازج غير محمص.</p>
+                </div>
+
+                <div class="meal-box o-style">
+                    <div class="meal-title">🥩 الوجبة الثانية (الغداء)</div>
+                    <p class="meal-details">200 غرام صدور دجاج مشوية على الجريل + 150 غرام أرز أبيض مسلوق (موزون بعد الطبخ) + صحن سلطة خضراء كبير مع ليمون.</p>
+                </div>
+
+                <div class="meal-box o-style">
+                    <div class="meal-title">☕ سناك (2) قبل التمرين</div>
+                    <p class="meal-details">كوب قهوة سوداء داكنة بدون سكر + حبة موز متوسطة لمد الجسم بالطاقة النظيفة.</p>
+                </div>
+
+                <div class="meal-box o-style">
+                    <div class="meal-title">🐟 الوجبة الثالثة (العشاء)</div>
+                    <p class="meal-details">علبة تونة كبيرة مصفاة تماماً من الزيت ومغسولة بالخل + صحن سلطة مشكل + نصف خبز أسمر أو توست بر.</p>
+                </div>
+
                 <button class="back-btn" onclick="returnToMenu()">↩ عودة لقائمة الأنظمة</button>
             </div>
 
-            <!-- مكان استعراض بيانات نظام H -->
             <div class="diet-content" id="diet-h-panel">
-                <h2>📋 تفاصيل النظام الثاني - H</h2>
-                <p><strong>• الوجبة الأولى:</strong> شوفان باللبن (50 جرام شوفان) + سكوب بروتين أو 4 بياض بيض.</p>
-                <p><strong>• الوجبة الثانية:</strong> 200 جرام لحم مفروم قليل الدسم + 150 جرام بطاطس مسلوقة أو مشوية.</p>
-                <p><strong>• الوجبة الثالثة:</strong> جبن قريش (150 جرام) + خيار وحبة طماطم + ملعقة زيت زيتون.</p>
+                <h2>📋 الجدول الغذائي المتكامل [ H ]</h2>
+                
+                <div class="meal-box">
+                    <div class="meal-title">🥣 الوجبة الأولى (الفطور)</div>
+                    <p class="meal-details">60 غرام شوفان مطبوخ بالماء أو بحليب خالي الدسم + سكوب بروتين بودرة (أو 5 بياض بيض) + رشة قرفة صغيرة.</p>
+                </div>
+
+                <div class="meal-box">
+                    <div class="meal-title">🍓 سناك (1)</div>
+                    <p class="meal-details">صحن صغير يحتوي على التوت الأزرق أو الفراولة (100 غرام) + كوب شاي أخضر بدون سكر.</p>
+                </div>
+
+                <div class="meal-box">
+                    <div class="meal-title">🥩 الوجبة الثانية (الغداء)</div>
+                    <p class="meal-details">180 غرام لحم مفروم بقري صافي (قليل الدسم) مطبوخ بدون زيوت مهدرجة + 150 غرام بطاطس حلوة أو عادية مسلوقة أو مشوية في القلاية الهوائية.</p>
+                </div>
+
+                <div class="meal-box">
+                    <div class="meal-title">🥜 سناك (2)</div>
+                    <p class="meal-details">ملعقة طعام واحدة من زبدة الفول السوداني الطبيعية (بدون سكر مضاف) مع شريحة توست أسمر واحدة.</p>
+                </div>
+
+                <div class="meal-box">
+                    <div class="meal-title">🧀 الوجبة الثالثة (العشاء)</div>
+                    <p class="meal-details">200 غرام جبن قريش طبيعي + حبة طماطم صغيرة مقطعة + ملعقة صغيرة زيت زيتون بكر ممتاز + خيار بارد.</p>
+                </div>
+
                 <button class="back-btn" onclick="returnToMenu()">↩ عودة لقائمة الأنظمة</button>
             </div>
 
@@ -318,7 +378,6 @@
     </div>
 
     <script>
-        // التشفير المعتمد لكلمة السر (oohh)
         const _vKey = "b29oaA==";
 
         function checkAccess() {
@@ -337,7 +396,6 @@
             }
         }
 
-        // دالة لعرض تفاصيل النظام الغذائي المختار بنفس الصفحة
         function showDiet(type) {
             document.getElementById('systems-gate').style.display = 'none';
             document.getElementById('card-subtitle').style.display = 'none';
@@ -351,7 +409,6 @@
             }
         }
 
-        // دالة للعودة إلى قائمة اختيار الأنظمة
         function returnToMenu() {
             document.getElementById('diet-o-panel').style.display = 'none';
             document.getElementById('diet-h-panel').style.display = 'none';
