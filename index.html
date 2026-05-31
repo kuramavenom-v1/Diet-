@@ -2,10 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>H SYSTEM - نظام غذائي</title>
     <style>
-        /* إعدادات الخلفية العامة للموقع باللون الأسود العميق */
+        /* إعدادات الخلفية العامة المتوافقة مع أبعاد شاشات الجوال */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #05070f;
@@ -16,86 +16,94 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            width: 100%;
             overflow-x: hidden;
             position: relative;
+            box-sizing: border-box;
         }
 
-        /* هالات التوهج الزرقاء في الخلفية لتعطي طابع النيون */
+        /* هالات التوهج الخلفية */
         .bg-glow-1 {
             position: absolute;
-            top: -20%;
-            left: -20%;
-            width: 60%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, rgba(0,0,0,0) 70%);
+            top: -10%;
+            left: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
             z-index: 1;
         }
 
         .bg-glow-2 {
             position: absolute;
-            bottom: -20%;
-            right: -20%;
-            width: 60%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(0,0,0,0) 70%);
+            bottom: -10%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, rgba(0,0,0,0) 70%);
             z-index: 1;
         }
 
+        /* حاوية مرنة مخصصة لأبعاد شاشة الهاتف */
         .container {
             position: relative;
             z-index: 10;
-            width: 90%;
-            max-width: 650px;
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            box-sizing: border-box;
             text-align: center;
-            padding: 20px 0;
         }
 
         /* شعار اللوجو العلوي المتوهج */
         .cyber-logo {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 900;
             color: #00f2fe;
             text-shadow: 0 0 15px #00f2fe, 0 0 30px #0066ff;
-            margin-bottom: 30px;
-            letter-spacing: 3px;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
         }
 
-        /* الكرت الرئيسي للموقع */
+        /* كرت الجوال الرئيسي */
         .main-card {
             background: rgba(10, 15, 30, 0.85);
             border: 2px solid #0066ff;
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 0 30px rgba(0, 102, 255, 0.3), inset 0 0 20px rgba(0, 242, 254, 0.1);
-            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px 20px;
+            box-shadow: 0 0 25px rgba(0, 102, 255, 0.25), inset 0 0 15px rgba(0, 242, 254, 0.08);
+            backdrop-filter: blur(8px);
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         h1.title {
-            font-size: 26px;
+            font-size: 20px;
             color: #ffffff;
-            margin: 0 0 15px 0;
+            margin: 0 0 12px 0;
             font-weight: 800;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            line-height: 1.4;
         }
 
         .subtitle {
-            font-size: 15px;
+            font-size: 14px;
             color: #00f2fe;
-            margin: 0 0 30px 0;
+            margin: 0 0 25px 0;
             font-weight: 500;
-            text-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
-            line-height: 1.6;
+            text-shadow: 0 0 6px rgba(0, 242, 254, 0.2);
+            line-height: 1.5;
         }
 
-        /* خط التقسيم المتوهج بتأثير الأمواج المتحركة */
+        /* خط التقسيم بتأثير الأمواج الضوئية */
         .matrix-line {
             height: 3px;
             background: linear-gradient(90deg, transparent, #00f2fe, #ff0055, #00f2fe, transparent);
             background-size: 200% 100%;
-            width: 90%;
-            margin: 0 auto 35px auto;
+            width: 100%;
+            margin: 0 auto 25px auto;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+            box-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
             animation: waveGlow 3s infinite linear;
         }
 
@@ -104,136 +112,157 @@
             100% { background-position: -200% 0; }
         }
 
-        /* بوابة كلمة المرور */
+        /* بوابة التحقق المخصصة للجوال */
         .password-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 15px;
+            width: 100%;
         }
 
         .cyber-input {
-            width: 80%;
-            max-width: 300px;
-            padding: 12px 20px;
-            background: rgba(5, 7, 15, 0.8);
+            width: 100%;
+            max-width: 280px;
+            padding: 14px;
+            background: rgba(5, 7, 15, 0.9);
             border: 2px solid #00f2fe;
             border-radius: 10px;
             color: #fff;
             font-size: 18px;
             text-align: center;
             outline: none;
+            box-sizing: border-box;
             box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
             transition: all 0.3s ease;
         }
 
         .cyber-input:focus {
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.35);
             border-color: #ff0055;
         }
 
-        /* حاوية الأزرار (مخفية في البداية) */
+        /* أزرار مرنة متوافقة عمودياً */
         .button-group {
             display: none;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
         }
 
-        /* التصميم الأساسي للأزرار السيبرانية بدون ارتعاش */
         .cyber-btn {
-            flex: 1;
-            padding: 18px 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 15px;
             background: linear-gradient(135deg, #020813 0%, #0a1931 100%);
             color: #ffffff;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             text-decoration: none;
             text-align: center;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
             position: relative;
+            display: block;
         }
 
-        /* زر النظام الأول - O */
         .btn-o {
             border: 2px solid #00f2fe;
-            text-shadow: 0 0 10px #00f2fe;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2), inset 0 0 10px rgba(0, 242, 254, 0.1);
+            text-shadow: 0 0 8px #00f2fe;
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.15);
         }
         
-        /* زر النظام الثاني - H */
         .btn-h {
             border: 2px solid #ff0055;
-            text-shadow: 0 0 10px #ff0055;
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.2), inset 0 0 10px rgba(255, 0, 85, 0.1);
+            text-shadow: 0 0 8px #ff0055;
+            box-shadow: 0 0 12px rgba(255, 0, 85, 0.15);
         }
 
-        /* تأثير التمرير (Hover) الاحترافي */
-        .cyber-btn:hover {
-            transform: translateY(-4px);
+        .cyber-btn:active, .cyber-btn:hover {
+            transform: scale(0.98);
             color: #fff;
-            text-shadow: 0 0 15px #fff;
         }
 
-        .btn-o:hover {
+        .btn-o:active, .btn-o:hover {
             background: #00f2fe;
             color: #05070f;
-            box-shadow: 0 0 30px #00f2fe;
+            box-shadow: 0 0 20px #00f2fe;
         }
 
-        .btn-h:hover {
+        .btn-h:active, .btn-h:hover {
             background: #ff0055;
-            box-shadow: 0 0 30px #ff0055;
+            box-shadow: 0 0 20px #ff0055;
         }
 
-        .cyber-btn::before { content: "[ "; color: #00f2fe; transition: color 0.3s; }
-        .cyber-btn::after { content: " ]"; color: #00f2fe; transition: color 0.3s; }
+        .cyber-btn::before { content: "[ "; color: #00f2fe; }
+        .cyber-btn::after { content: " ]"; color: #00f2fe; }
         .btn-h::before, .btn-h::after { color: #ff0055; }
-        
-        .cyber-btn:hover::before, .cyber-btn:hover::after {
-            color: #ffffff;
+
+        /* حاوية عرض بيانات الأنظمة الغذائية */
+        .diet-content {
+            display: none;
+            text-align: right;
+            background: rgba(5, 7, 15, 0.9);
+            border: 1px solid #00f2fe;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 10px;
+            box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.1);
         }
 
-        /* فوتر النظام السفلي */
+        .diet-content h2 {
+            font-size: 18px;
+            color: #00f2fe;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.3);
+            padding-bottom: 8px;
+        }
+
+        .diet-content p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin: 10px 0;
+        }
+
+        /* زر العودة للأنظمة */
+        .back-btn {
+            margin-top: 20px;
+            background: transparent;
+            border: 1px solid #ff0055;
+            color: #ff0055;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #ff0055;
+            color: #fff;
+        }
+
+        /* فوتر النظام السفلي للجوال */
         .system-status {
-            margin-top: 40px;
-            font-size: 11px;
+            margin-top: 30px;
+            font-size: 10px;
             color: #4b5563;
             font-family: monospace;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
         }
 
         .status-dot {
             display: inline-block;
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background-color: #00f2fe;
             border-radius: 50%;
-            margin-left: 6px;
-            box-shadow: 0 0 8px #00f2fe;
-        }
-
-        /* إعدادات التوافق الكامل مع الجوال المتجاوب */
-        @media (max-width: 600px) {
-            .main-card {
-                padding: 30px 20px;
-            }
-            h1.title {
-                font-size: 22px;
-            }
-            .button-group {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .cyber-btn {
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .cyber-input {
-                width: 90%;
-            }
+            margin-left: 4px;
+            box-shadow: 0 0 6px #00f2fe;
         }
     </style>
 </head>
@@ -251,15 +280,36 @@
             
             <div class="matrix-line"></div>
 
+            <!-- بوابة الباسوورد -->
             <div class="password-section" id="auth-gate">
                 <input type="password" id="sys-pass" class="cyber-input" placeholder="••••••••" autocomplete="off">
-                <a class="cyber-btn btn-o" onclick="checkAccess()" style="flex: none; width: 150px; padding: 12px 0; font-size: 16px;">تأكيد الدخول</a>
+                <button class="cyber-btn btn-o" onclick="checkAccess()" style="max-width: 160px; padding: 12px 0;">تأكيد الدخول</button>
             </div>
 
+            <!-- أزرار اختيار الأنظمة -->
             <div class="button-group" id="systems-gate">
-                <a href="system-o.html" class="cyber-btn btn-o">النظام الأول - O</a>
-                <a href="system-h.html" class="cyber-btn btn-h">النظام الثاني - H</a>
+                <button class="cyber-btn btn-o" onclick="showDiet('O')">النظام الأول - O</button>
+                <button class="cyber-btn btn-h" onclick="showDiet('H')">النظام الثاني - H</button>
             </div>
+
+            <!-- مكان استعراض بيانات نظام O -->
+            <div class="diet-content" id="diet-o-panel">
+                <h2>📋 تفاصيل النظام الأول - O</h2>
+                <p><strong>• الوجبة الأولى:</strong> 3 بيضات مسلوقة + نصف خبز بر + خيار.</p>
+                <p><strong>• الوجبة الثانية:</strong> 200 جرام صدر دجاج مشوي + 150 جرام أرز مسلوق + سلطة خضراء.</p>
+                <p><strong>• الوجبة الثالثة:</strong> علبة تونة مصفاة من الزيت + سلطة أو قطعة توست أسمر.</p>
+                <button class="back-btn" onclick="returnToMenu()">↩ عودة لقائمة الأنظمة</button>
+            </div>
+
+            <!-- مكان استعراض بيانات نظام H -->
+            <div class="diet-content" id="diet-h-panel">
+                <h2>📋 تفاصيل النظام الثاني - H</h2>
+                <p><strong>• الوجبة الأولى:</strong> شوفان باللبن (50 جرام شوفان) + سكوب بروتين أو 4 بياض بيض.</p>
+                <p><strong>• الوجبة الثانية:</strong> 200 جرام لحم مفروم قليل الدسم + 150 جرام بطاطس مسلوقة أو مشوية.</p>
+                <p><strong>• الوجبة الثالثة:</strong> جبن قريش (150 جرام) + خيار وحبة طماطم + ملعقة زيت زيتون.</p>
+                <button class="back-btn" onclick="returnToMenu()">↩ عودة لقائمة الأنظمة</button>
+            </div>
+
         </div>
 
         <div class="system-status">
@@ -268,29 +318,18 @@
     </div>
 
     <script>
-        // كلمة المرور مشفرة بـ Base64 لضمان عدم قراءتها مباشرة من الـ Source Code كـ نص صريح
-        // النص المشفر يعبر عن القيمة "oohh"
+        // التشفير المعتمد لكلمة السر (oohh)
         const _vKey = "b29oaA==";
 
         function checkAccess() {
             const inputField = document.getElementById('sys-pass');
             const userPass = inputField.value;
             
-            // فك التشفير ومقارنته بمدخلات المستخدم
             if (userPass === atob(_vKey)) {
-                // تغيير العناوين والواجهة بسلاسة لفتح الأنظمة
                 document.getElementById('card-title').innerText = "الدخول إلى النظام الغذائي المخصص";
                 document.getElementById('card-subtitle').innerText = "اختر بوابة النظام الصحي للبدء في تدمير الدهون واكتساب اللياقة";
                 document.getElementById('auth-gate').style.display = 'none';
-                
-                // إظهار الأزرار المخصصة للأنظمة الغذائية
-                const sysGate = document.getElementById('systems-gate');
-                sysGate.style.display = 'flex';
-                
-                // تعديل مظهر حاوية الأزرار على الجوال عند الفتح
-                if(window.innerWidth <= 600) {
-                    sysGate.style.flexDirection = 'column';
-                }
+                document.getElementById('systems-gate').style.display = 'flex';
             } else {
                 alert('عذرًا.. مفتاح التشفير غير صحيح! حاول مجددًا.');
                 inputField.value = '';
@@ -298,7 +337,30 @@
             }
         }
 
-        // تفعيل زر الإنتر للكيبورد لتسهيل الدخول
+        // دالة لعرض تفاصيل النظام الغذائي المختار بنفس الصفحة
+        function showDiet(type) {
+            document.getElementById('systems-gate').style.display = 'none';
+            document.getElementById('card-subtitle').style.display = 'none';
+            
+            if (type === 'O') {
+                document.getElementById('card-title').innerText = "النظام الصحي [ O ]";
+                document.getElementById('diet-o-panel').style.display = 'block';
+            } else if (type === 'H') {
+                document.getElementById('card-title').innerText = "النظام الصحي [ H ]";
+                document.getElementById('diet-h-panel').style.display = 'block';
+            }
+        }
+
+        // دالة للعودة إلى قائمة اختيار الأنظمة
+        function returnToMenu() {
+            document.getElementById('diet-o-panel').style.display = 'none';
+            document.getElementById('diet-h-panel').style.display = 'none';
+            
+            document.getElementById('card-title').innerText = "الدخول إلى النظام الغذائي المخصص";
+            document.getElementById('card-subtitle').style.display = 'block';
+            document.getElementById('systems-gate').style.display = 'flex';
+        }
+
         document.getElementById('sys-pass').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 checkAccess();
