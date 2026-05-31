@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>H SYSTEM - نظام غذائي</title>
     <style>
-        /* إعدادات الخلفية وتثبيت السنتر تماماً لمنع الانحراف */
+        /* تثبيت المحاذاة والسنتر ومنع أي انحراف جانبي */
         * {
             box-sizing: border-box;
         }
@@ -25,7 +25,7 @@
             position: relative;
         }
 
-        /* هالات التوهج الخلفية */
+        /* هالات التوهج الخلفية النيون */
         .bg-glow-1 {
             position: absolute;
             top: -10%;
@@ -46,12 +46,12 @@
             z-index: 1;
         }
 
-        /* حاوية ثابتة وممركزة بالملي للجوال */
+        /* حاوية ممركزة بالملي وبأبعاد ثابتة للجوال */
         .container {
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 420px; /* الحجم المثالي لأقوى استقرار على الجوال */
+            max-width: 430px; 
             padding: 16px;
             margin: 0 auto;
             display: flex;
@@ -71,7 +71,7 @@
             text-align: center;
         }
 
-        /* كرت الجوال الرئيسي الثابت */
+        /* كرت الجوال الرئيسي المتزن */
         .main-card {
             background: rgba(10, 15, 30, 0.9);
             border: 2px solid #0066ff;
@@ -80,7 +80,6 @@
             box-shadow: 0 0 25px rgba(0, 102, 255, 0.25), inset 0 0 15px rgba(0, 242, 254, 0.08);
             backdrop-filter: blur(8px);
             width: 100%;
-            transition: all 0.3s ease;
         }
 
         h1.title {
@@ -103,7 +102,7 @@
             text-align: center;
         }
 
-        /* خط التقسيم بتأثير الأمواج الضوئية */
+        /* خط التقسيم بتأثير أمواج النور */
         .matrix-line {
             height: 3px;
             background: linear-gradient(90deg, transparent, #00f2fe, #ff0055, #00f2fe, transparent);
@@ -149,7 +148,7 @@
             border-color: #ff0055;
         }
 
-        /* أزرار مرنة متوافقة عمودياً */
+        /* أزرار اختيار الأنظمة المتوافقة مع الجوال */
         .button-group {
             display: none;
             flex-direction: column;
@@ -194,7 +193,7 @@
         .cyber-btn::after { content: " ]"; color: #00f2fe; }
         .btn-h::before, .btn-h::after { color: #ff0055; }
 
-        /* حاوية عرض الجداول الغذائية الكبيرة والمتكاملة */
+        /* حاوية عرض الأنظمة الغذائية */
         .diet-content {
             display: none;
             text-align: right;
@@ -204,46 +203,64 @@
             padding: 15px;
             margin-top: 5px;
             box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.1);
-            max-height: 60vh;
-            overflow-y: auto; /* يسمح بالتمرير الداخلي السلس إذا كانت الوجبات طويلة */
+            max-height: 65vh;
+            overflow-y: auto; /* تمرير سلس للمحتوى الطويل على الجوال */
         }
 
         .diet-content h2 {
-            font-size: 17px;
+            font-size: 16px;
             color: #00f2fe;
-            margin-top: 0;
+            margin: 0 0 12px 0;
             border-bottom: 1px solid rgba(0, 242, 254, 0.3);
             padding-bottom: 8px;
             text-align: center;
         }
 
+        .section-title {
+            font-size: 14px;
+            color: #00f2fe;
+            font-weight: bold;
+            margin: 15px 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-h-title {
+            color: #ff0055;
+        }
+
         .meal-box {
             background: rgba(255, 255, 255, 0.03);
-            border-right: 3px solid #ff0055;
+            border-right: 3px solid #00f2fe;
             padding: 10px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             border-radius: 4px;
         }
 
-        .meal-box.o-style {
-            border-right-color: #00f2fe;
+        .meal-box.h-style {
+            border-right-color: #ff0055;
+        }
+
+        .meal-box.gold-style {
+            border-right-color: #ffaa00;
         }
 
         .meal-title {
             font-weight: 800;
             color: #ffffff;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 4px;
         }
 
         .meal-details {
             font-size: 13px;
             color: #cbd5e1;
-            line-height: 1.5;
+            line-height: 1.6;
             margin: 0;
         }
 
-        /* زر العودة للأنظمة */
+        /* زر العودة */
         .back-btn {
             margin-top: 15px;
             background: transparent;
@@ -309,65 +326,119 @@
             </div>
 
             <div class="diet-content" id="diet-o-panel">
-                <h2>📋 الجدول الغذائي المتكامل [ O ]</h2>
+                <h2>النظام الأول [ O ]</h2>
                 
-                <div class="meal-box o-style">
-                    <div class="meal-title">🍳 الوجبة الأولى (الفطور)</div>
-                    <p class="meal-details">4 بياض بيض + بيضة كاملة (مسلوق أو أومليت بنقطة زيت زيتون) + 50 غرام خبز بر كامل + خيار وخس غير محدود.</p>
+                <div class="section-title">🍏 النظام الغذائي (1800 - 2000 سعرة)</div>
+                
+                <div class="meal-box">
+                    <div class="meal-title">الفطور:</div>
+                    <p class="meal-details">3 بيضات مسلوقة أو أومليت + نصف خبز بر (أسمر) + شرائح طماطم وخيار + كوب حليب قليّل الدسم.</p>
+                </div>
+                <div class="meal-box">
+                    <div class="meal-title">سناك 1:</div>
+                    <p class="meal-details">حبة تفاحة أو موز + 5 حبات لوز نيء.</p>
+                </div>
+                <div class="meal-box">
+                    <div class="meal-title">الغداء:</div>
+                    <p class="meal-details">150 غرام صدور دجاج مشوية (أو سمك/لحم مفروم بدون دهن) + 6 ملاعق كبيرة رز أسمر أو أبيض مطبوخ بمسحة زيت + صحن سلطة خضراء كبير مع عصرة ليمون.</p>
+                </div>
+                <div class="meal-box">
+                    <div class="meal-title">سناك 2:</div>
+                    <p class="meal-details">علبة زبادي يوناني (عالي البروتين) أو زبادي عادي قليل الدسم.</p>
+                </div>
+                <div class="meal-box">
+                    <div class="meal-title">العشاء:</div>
+                    <p class="meal-details">علبة تونة مصفاة من الزيت + نصف خبز بر + صحن سلطة خضراء، أو جبن قريش مع طماطم ونصف خبز بر.</p>
                 </div>
 
-                <div class="meal-box o-style">
-                    <div class="meal-title">🍏 سناك (1)</div>
-                    <p class="meal-details">حبة تفاحة خضراء أو برتقالة متوسطة + 10 حبات لوز نيون طازج غير محمص.</p>
+                <div class="section-title">🏋️ النظام الرياضي (5 أيام في الأسبوع)</div>
+                <div class="meal-box">
+                    <div class="meal-title">التمارين:</div>
+                    <p class="meal-details">تمارين هوائية + مقاومة بوزن الجسم.</p>
+                </div>
+                <div class="meal-box">
+                    <div class="meal-title">المشي السريع أو الهرولة:</div>
+                    <p class="meal-details">30 إلى 45 دقيقة يومياً.</p>
+                </div>
+                <div class="meal-box">
+                    <div class="meal-title">تمارين المقاومة (3 أيام بالأسبوع):</div>
+                    <p class="meal-details">سكوات (القرفصاء) بوزن الجسم، تمارين الضغط (Push-ups) حتى لو على الركبة، وتمارين البطن والبلانك لبناء أساس عضلي قوي يساعد في الحرق.</p>
                 </div>
 
-                <div class="meal-box o-style">
-                    <div class="meal-title">🥩 الوجبة الثانية (الغداء)</div>
-                    <p class="meal-details">200 غرام صدور دجاج مشوية على الجريل + 150 غرام أرز أبيض مسلوق (موزون بعد الطبخ) + صحن سلطة خضراء كبير مع ليمون.</p>
-                </div>
-
-                <div class="meal-box o-style">
-                    <div class="meal-title">☕ سناك (2) قبل التمرين</div>
-                    <p class="meal-details">كوب قهوة سوداء داكنة بدون سكر + حبة موز متوسطة لمد الجسم بالطاقة النظيفة.</p>
-                </div>
-
-                <div class="meal-box o-style">
-                    <div class="meal-title">🐟 الوجبة الثالثة (العشاء)</div>
-                    <p class="meal-details">علبة تونة كبيرة مصفاة تماماً من الزيت ومغسولة بالخل + صحن سلطة مشكل + نصف خبز أسمر أو توست بر.</p>
-                </div>
-
+                <div id="gold-rules-o"></div>
                 <button class="back-btn" onclick="returnToMenu()">↩ عودة لقائمة الأنظمة</button>
             </div>
 
             <div class="diet-content" id="diet-h-panel">
-                <h2>📋 الجدول الغذائي المتكامل [ H ]</h2>
+                <h2>النظام الثاني [ H ]</h2>
                 
-                <div class="meal-box">
-                    <div class="meal-title">🥣 الوجبة الأولى (الفطور)</div>
-                    <p class="meal-details">60 غرام شوفان مطبوخ بالماء أو بحليب خالي الدسم + سكوب بروتين بودرة (أو 5 بياض بيض) + رشة قرفة صغيرة.</p>
+                <div class="section-title btn-h-title">🍏 النظام الغذائي (1500 - 1600 سعرة)</div>
+                
+                <div class="meal-box h-style">
+                    <div class="meal-title">الفطور:</div>
+                    <p class="meal-details">2 بيضة مسلوقة + قطعة جبن قريش أو قليل الدسم + ربع خبز بر + كوب شاي أو قهوة بدون سكر (أو بسكر دايت).</p>
+                </div>
+                <div class="meal-box h-style">
+                    <div class="meal-title">سناك 1:</div>
+                    <p class="meal-details">حبة خيار أو جزر + قبضة يد صغيرة مكسرات نية (لوز أو جوز).</p>
+                </div>
+                <div class="meal-box h-style">
+                    <div class="meal-title">الغداء:</div>
+                    <p class="meal-details">120 إلى 150 غرام سمك مشوي أو دجاج + 4 ملاعق رز أسمر أو كينوا + صحن سلطة مشكلة كبير (خس، جرجير، خيار) مع ملعقة صغيرة زيت زيتون.</p>
+                </div>
+                <div class="meal-box h-style">
+                    <div class="meal-title">سناك 2:</div>
+                    <p class="meal-details">حبة فاكهة (برتقال، كيوي، أو فراولة) - ميزة هذه الفواكه سكرها منخفض.</p>
+                </div>
+                <div class="meal-box h-style">
+                    <div class="meal-title">العشاء:</div>
+                    <p class="meal-details">شوربة شوفان بالدجاج والخضار (بدون كريمة)، أو صحن سلطة كبير مع جبن فيتا لايت وربع خبز أسمر.</p>
                 </div>
 
-                <div class="meal-box">
-                    <div class="meal-title">🍓 سناك (1)</div>
-                    <p class="meal-details">صحن صغير يحتوي على التوت الأزرق أو الفراولة (100 غرام) + كوب شاي أخضر بدون سكر.</p>
+                <div class="section-title btn-h-title">🏋️ النظام الرياضي (5 إلى 6 أيام في الأسبوع)</div>
+                <div class="meal-box h-style">
+                    <div class="meal-title">التمارين:</div>
+                    <p class="meal-details">رياضات منخفضة الجهد لحماية المفاصل وزيادة اللياقة.</p>
+                </div>
+                <div class="meal-box h-style">
+                    <div class="meal-title">المشي:</div>
+                    <p class="meal-details">45 إلى 60 دقيقة يومياً (يفضل تقسيمها إذا كان المشي المتواصل متعباً، مثل 30 دقيقة صباحاً و 30 دقيقة مساءً).</p>
+                </div>
+                <div class="meal-box h-style">
+                    <div class="meal-title">تمارين الإطالة والسويدي الخفيف:</div>
+                    <p class="meal-details">10 دقائق يومياً لمرونة العضلات والمفاصل.</p>
+                </div>
+                <div class="meal-box h-style">
+                    <div class="meal-title">السباحة (إن وجدت):</div>
+                    <p class="meal-details">ممتازة جداً وتقلل الضغط على الركب والظهر وتحرق سعرات عالية.</p>
                 </div>
 
-                <div class="meal-box">
-                    <div class="meal-title">🥩 الوجبة الثانية (الغداء)</div>
-                    <p class="meal-details">180 غرام لحم مفروم بقري صافي (قليل الدسم) مطبوخ بدون زيوت مهدرجة + 150 غرام بطاطس حلوة أو عادية مسلوقة أو مشوية في القلاية الهوائية.</p>
-                </div>
-
-                <div class="meal-box">
-                    <div class="meal-title">🥜 سناك (2)</div>
-                    <p class="meal-details">ملعقة طعام واحدة من زبدة الفول السوداني الطبيعية (بدون سكر مضاف) مع شريحة توست أسمر واحدة.</p>
-                </div>
-
-                <div class="meal-box">
-                    <div class="meal-title">🧀 الوجبة الثالثة (العشاء)</div>
-                    <p class="meal-details">200 غرام جبن قريش طبيعي + حبة طماطم صغيرة مقطعة + ملعقة صغيرة زيت زيتون بكر ممتاز + خيار بارد.</p>
-                </div>
-
+                <div id="gold-rules-h"></div>
                 <button class="back-btn" onclick="returnToMenu()">↩ عودة لقائمة الأنظمة</button>
+            </div>
+
+            <div id="gold-instructions-template" style="display:none;">
+                <div class="section-title" style="color: #ffaa00;">💡 تعليمات ذهبية للاثنين (لضمان النتيجة):</div>
+                <div class="meal-box gold-style">
+                    <div class="meal-title">الماء:</div>
+                    <p class="meal-details">شرب لا يقل عن 3 لتر ماء يومياً. الماء هو أساس عمليات الحرق بالجسم.</p>
+                </div>
+                <div class="meal-box gold-style">
+                    <div class="meal-title">قطع السكريات:</div>
+                    <p class="meal-details">منع الحلويات، الغازيات، والعصائر الجاهزة تماماً. واستبدال سكر الطعام بسكر دايت (مثل ستيفيا) باعتدال.</p>
+                </div>
+                <div class="meal-box gold-style">
+                    <div class="meal-title">النومة المنظم:</div>
+                    <p class="meal-details">النوم من 7 لـ 8 ساعات بالليل يساعد على تنظيم الهرمونات المسؤولة عن الجوع والحرق.</p>
+                </div>
+                <div class="meal-box gold-style">
+                    <div class="meal-title">الطبخ الصحي:</div>
+                    <p class="meal-details">الاعتماد على الشوي، السلق، أو القلاية الهوائية، وتجنب المقالي تماماً.</p>
+                </div>
+                <div class="meal-box gold-style">
+                    <div class="meal-title">نصيحة أخيرة يا غالي:</div>
+                    <p class="meal-details">النزول من وزن قريب الـ 100 إلى 70 يحتاج "صبر واستمرارية". النزول الآمن والصحي يكون بمعدل 2 إلى 4 كيلو بالشهر عشان ما يرجع الوزن بسرعة وعشان تتجنب الترهلات.</p>
+                </div>
             </div>
 
         </div>
@@ -379,6 +450,13 @@
 
     <script>
         const _vKey = "b29oaA==";
+
+        // تجهيز وحقن التعليمات الذهبية في كلا النظامين تلقائياً لمنع التكرار
+        window.onload = function() {
+            const template = document.getElementById('gold-instructions-template').innerHTML;
+            document.getElementById('gold-rules-o').innerHTML = template;
+            document.getElementById('gold-rules-h').innerHTML = template;
+        };
 
         function checkAccess() {
             const inputField = document.getElementById('sys-pass');
@@ -401,11 +479,13 @@
             document.getElementById('card-subtitle').style.display = 'none';
             
             if (type === 'O') {
-                document.getElementById('card-title').innerText = "النظام الصحي [ O ]";
+                document.getElementById('card-title').innerText = "بوابة النظام [ O ]";
                 document.getElementById('diet-o-panel').style.display = 'block';
+                document.getElementById('diet-o-panel').scrollTop = 0; // إرجاع السكرول لأعلى الصفحة
             } else if (type === 'H') {
-                document.getElementById('card-title').innerText = "النظام الصحي [ H ]";
+                document.getElementById('card-title').innerText = "بوابة النظام [ H ]";
                 document.getElementById('diet-h-panel').style.display = 'block';
+                document.getElementById('diet-h-panel').scrollTop = 0;
             }
         }
 
